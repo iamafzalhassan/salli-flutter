@@ -1,0 +1,29 @@
+abstract final class MockCollections {
+  static const String accessTokens = 'access_tokens';
+  static const String bankPayees = 'bank_payees';
+  static const String billSchedules = 'bill_schedules';
+  static const String cards = 'cards';
+  static const String challenges = 'otp_challenges';
+  static const String devices = 'devices';
+  static const String disputes = 'disputes';
+  static const String fundingChallenges = 'funding_challenges';
+  static const String fundingSources = 'funding_sources';
+  static const String idempotency = 'idempotency';
+  static const String ledgerEntries = 'ledger_entries';
+  static const String ledgerTransactions = 'ledger_transactions';
+  static const String moneyRequests = 'money_requests';
+  static const String nonces = 'nonces';
+  static const String notifications = 'notifications';
+  static const String registrations = 'registrations';
+  static const String requestSeeds = 'request_seeds';
+  static const String retiredRefreshTokens = 'retired_refresh_tokens';
+  static const String rewardAccounts = 'reward_accounts';
+  static const String savedBillers = 'saved_billers';
+  static const String scratchCards = 'scratch_cards';
+  static const String securityEvents = 'security_events';
+  static const String sessions = 'sessions';
+  static const String splits = 'splits';
+  static const String throttles = 'otp_throttles';
+  static const String users = 'users';
+  static const String walletSeeds = 'wallet_seeds';
+}

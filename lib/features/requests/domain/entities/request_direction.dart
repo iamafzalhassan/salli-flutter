@@ -1,0 +1,1 @@
+enum RequestDirection { incoming, outgoing }

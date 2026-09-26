@@ -1,0 +1,32 @@
+abstract final class AppSpacing {
+  static const double cardPadding = 16;
+  static const double controlHeight = 56;
+  static const double hairline = 1;
+  static const double iconHero = 72;
+  static const double iconLg = 32;
+  static const double iconMd = 24;
+  static const double iconSm = 20;
+  static const double iconXs = 16;
+  static const double illustration = 240;
+  static const double keypadKey = 64;
+  static const double lg = 16;
+  static const double md = 12;
+  static const double navClearance = 120;
+  static const double navHeight = 72;
+  static const double pinDot = 14;
+  static const double progressIndicator = 20;
+  static const double progressStroke = 2;
+  static const double scanButton = 56;
+  static const double screenPadding = 20;
+  static const double sheetHandle = 40;
+  static const double sm = 8;
+  static const double successMark = 112;
+  static const double switchHeight = 32;
+  static const double switchWidth = 52;
+  static const double touchTarget = 44;
+  static const double xl = 24;
+  static const double xs = 4;
+  static const double xxl = 32;
+  static const double xxs = 2;
+  static const double xxxl = 48;
+}

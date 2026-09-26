@@ -1,0 +1,49 @@
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+*.log
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+build/
+**/doc/api/
+migrate_working_dir/
+
+# Android
+**/android/.gradle/
+**/android/.kotlin/
+**/android/local.properties
+**/android/key.properties
+**/android/app/debug
+**/android/app/profile
+**/android/app/release
+*.jks
+*.keystore
+
+# iOS
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/.last_build_id
+xcuserdata/
+
+# Firebase
+.firebase/
+
+# Secrets
+.env
+.env.json
+google-services.json
+GoogleService-Info.plist
+
+# Claude
+CLAUDE.md

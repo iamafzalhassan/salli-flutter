@@ -1,0 +1,50 @@
+name: salli
+description: Payments and wallet app built for Sri Lanka.
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.13.2
+
+dependencies:
+  crypto: ^3.0.7
+  dio: ^5.11.1
+  easy_localization: ^3.0.8
+  equatable: ^3.0.0
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^9.1.1
+  flutter_secure_storage: ^11.2.0
+  freerasp: ^8.2.2
+  get_it: ^9.3.0
+  go_router: ^18.0.1
+  hive_ce: ^2.20.0
+  hive_ce_flutter: ^2.3.4
+  image_picker: ^1.2.3
+  intl: ^0.20.3
+  mobile_scanner: ^7.4.2
+  path_provider_foundation: ">=2.5.1 <2.6.0"
+  pdf: ^3.13.1
+  pointycastle: ^4.0.0
+  qr_flutter: ^4.1.0
+  screen_brightness: ^2.1.11
+  share_plus: ^13.3.0
+  shared_preferences: ^2.5.5
+
+dev_dependencies:
+  flutter_lints: ^6.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/translations/
+  fonts:
+    - family: SFProDisplay
+      fonts:
+        - asset: assets/fonts/SFProDisplay-Regular.otf
+        - asset: assets/fonts/SFProDisplay-Medium.otf
+          weight: 500
+        - asset: assets/fonts/SFProDisplay-Bold.otf
+          weight: 700

@@ -1,0 +1,1 @@
+enum AccountTier { basic, verified }
