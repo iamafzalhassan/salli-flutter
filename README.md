@@ -1,5 +1,6 @@
 # Salli
 
+[![CI](https://github.com/iamafzalhassan/salli-flutter/actions/workflows/ci.yml/badge.svg)](https://github.com/iamafzalhassan/salli-flutter/actions/workflows/ci.yml)
 ![Flutter](https://img.shields.io/badge/Flutter-3.47-02569B?logo=flutter&logoColor=white)
 ![BLoC](https://img.shields.io/badge/BLoC-Cubit-13B9FD)
 ![Security](https://img.shields.io/badge/requests-ECDSA_P--256_signed-E7FF5F)
@@ -120,7 +121,7 @@ Dark, minimal and premium, with one loud accent: near-black surfaces, a neon lim
 
 - A strict member ordering convention for every class: fields sorted by type tier, then type, then name; methods ordered by call order.
 - No comments in source. Names, types and ordering carry the meaning.
-- Every user-facing string lives in the English, Sinhala and Tamil translation files, 662 strings each, and all three change together.
+- Every user-facing string lives in the English, Sinhala and Tamil translation files, 664 strings each, and all three change together.
 - `dart format` at a 240-column page width, with the analyzer's strict casts, strict inference and strict raw types turned on.
 
 ## Project structure
@@ -128,7 +129,7 @@ Dark, minimal and premium, with one loud accent: near-black surfaces, a neon lim
 ```
 lib/
     main.dart, app.dart
-    core/config/        AppConfig, Environment (mock or staging), font licences
+    core/config/        AppConfig, Environment (mock or staging)
     core/di/            GetIt container, one module per feature
     core/errors/        Result, Failure, failure codes
     core/events/        Cross-feature event bus
@@ -156,11 +157,12 @@ assets/translations/    en, si and ta
 
 - **Run:** `flutter pub get`, then `flutter run`. The app starts on the in-app mock API, so it needs no backend and no keys. Sign in with any Sri Lankan mobile number; the code arrives as an in-app SMS banner.
 - **Release:** runtime protection needs the base64 SHA-256 of the signing certificate and the Apple team id, or money actions stay paused: `flutter build apk --release --dart-define=SALLI_CERT_HASH=<hash> --dart-define=SALLI_TEAM_ID=<team id>`.
+- **Security reports:** `--dart-define=SALLI_SECURITY_MAIL=<address>` sets the address freeRASP sends its security reports to. It defaults to `security@salli.lk`.
 - **Staging:** `--dart-define=SALLI_ENV=staging --dart-define=SALLI_SPKI_PINS=<pin>,<backup pin>` points the app at the staging API with certificate pinning armed.
 
 ## Testing
 
-More than 400 tests live in `test/`, mirroring the `lib/` path of the code they cover, with hand-written fakes and no mocking library:
+464 tests live in `test/`, mirroring the `lib/` path of the code they cover, with hand-written fakes and no mocking library:
 
 - **`test/core/utils/`**: `Money` splits that always sum to the total, `LkrFormat` and `AmountInput`, phone number parsing, both NIC formats with birth date, gender and leap years, payment links, and LANKAQR encoding and parsing, from the CRC-16 check value to rejecting tampered, foreign-currency and foreign-scheme codes.
 - **`test/core/security/` and `test/core/network/`**: PBKDF2 PIN hashing, weak PIN detection, request canonicalisation, app lock timing, runtime threat handling, SPKI extraction for certificate pinning, and recovery from offline.

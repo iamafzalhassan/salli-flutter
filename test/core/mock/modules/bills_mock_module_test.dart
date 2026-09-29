@@ -11,6 +11,7 @@ import '../../../helpers/mock_api_harness.dart';
 
 void main() {
   const account = '0123456789';
+  const friendPhone = '+94704445566';
 
   final harness = MockApiHarness();
 
@@ -115,7 +116,7 @@ void main() {
   });
 
   group('bill schedules', () {
-    Future<MockResponse> schedule(String savedBillerId, {bool autopay = false, String pinHash = 'hash-a'}) => harness.authorized(
+    Future<MockResponse> schedule(String savedBillerId, {bool autopay = false, String pinHash = 'hash-a', String? key}) => harness.authorized(
       'POST',
       ApiPaths.billSchedules,
       session,
@@ -125,7 +126,7 @@ void main() {
         'dayOfMonth': 25,
         'savedBillerId': savedBillerId,
       },
-      headers: {ApiHeaders.idempotencyKey: 'mandate-$autopay'},
+      headers: {ApiHeaders.idempotencyKey: key ?? 'mandate-$autopay'},
     );
 
     test('a reminder never moves money', () async {
@@ -160,7 +161,24 @@ void main() {
     test('allows one schedule per saved biller', () async {
       final savedBillerId = (await save()).body['id'] as String;
       await schedule(savedBillerId);
-      expect(MockApiHarness.errorCode(await schedule(savedBillerId)), FailureCodes.scheduleExists);
+      expect(MockApiHarness.errorCode(await schedule(savedBillerId, key: 'mandate-again')), FailureCodes.scheduleExists);
+    });
+
+    test('cancels a schedule so the biller can be scheduled again', () async {
+      final savedBillerId = (await save()).body['id'] as String;
+      final scheduleId = (await schedule(savedBillerId)).body['id'] as String;
+      expect((await harness.authorized('DELETE', ApiPaths.billSchedule.withId(scheduleId), session)).statusCode, 204);
+      expect((await harness.authorized('GET', ApiPaths.billSchedules, session)).body['items'], isEmpty);
+      expect((await schedule(savedBillerId, key: 'mandate-again')).statusCode, 201);
+    });
+
+    test('cannot cancel a schedule that does not exist', () async => expect(MockApiHarness.errorCode(await harness.authorized('DELETE', ApiPaths.billSchedule.withId('missing'), session)), FailureCodes.notFound));
+
+    test('cannot cancel a schedule owned by another member', () async {
+      final savedBillerId = (await save()).body['id'] as String;
+      final scheduleId = (await schedule(savedBillerId)).body['id'] as String;
+      session = await harness.register(phone: friendPhone);
+      expect(MockApiHarness.errorCode(await harness.authorized('DELETE', ApiPaths.billSchedule.withId(scheduleId), session)), FailureCodes.notFound);
     });
   });
 }

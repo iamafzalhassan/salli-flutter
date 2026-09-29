@@ -65,6 +65,7 @@ void main() {
     test('refuses the same PIN', () async => expect(await change(newPinHash: 'hash-a'), FailureCodes.pinReused));
 
     test('changes the PIN and records it', () async {
+      harness.now = harness.now.add(const Duration(minutes: 1));
       expect(await change(), isNull);
       expect(harness.store.find(MockCollections.users, userId())!['pinHash'], 'hash-b');
       expect((await events()).first, MockSecurityLog.pinChanged);

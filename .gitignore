@@ -24,6 +24,7 @@ migrate_working_dir/
 **/android/app/debug
 **/android/app/profile
 **/android/app/release
+**/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
 *.jks
 *.keystore
 
@@ -34,6 +35,7 @@ migrate_working_dir/
 **/ios/Flutter/flutter_export_environment.sh
 **/ios/Flutter/ephemeral/
 **/ios/Flutter/.last_build_id
+**/ios/Runner/GeneratedPluginRegistrant.*
 xcuserdata/
 
 # Firebase
